@@ -47,13 +47,13 @@ public class BadWordFilterNew {
         			//有单个屏蔽字
         			newTextBuilder.replace(index, index+1, "*");
         		}
-        		String respaceStr="";
         		for(int j=1;j<=Math.min(maxLength, text.length()-index-1);j++){
         			if((fastCheckChar[text.charAt(index+j)]&(1<<Math.min(j, 7)))==0)
         				break;
         			if(j+1>=minLength){
         				String badWord = text.substring(index, index+j+1);
         				if(badWords.contains(badWord)){
+        					String respaceStr="";
             				for(int n=0;n<j+1;n++){
             					respaceStr+="*";
             				}

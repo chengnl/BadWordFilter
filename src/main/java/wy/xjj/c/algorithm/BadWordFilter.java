@@ -39,12 +39,12 @@ public class BadWordFilter {
         		if(!firstCheckChar.get(text.charAt(index))){
         			while(index<text.length()-1&&!firstCheckChar.get(text.charAt(++index)));
         		}
-        		String respaceStr="";
         		for(int j=1;j<=Math.min(maxLength, text.length()-index);j++){
         			if(!allCheckChar.get(text.charAt(index+j-1)))
         				break;
         			String badWord = text.substring(index, index+j);
         			if(badWords.contains(badWord)){
+        				String respaceStr="";
         				for(int n=0;n<j;n++){
         					respaceStr+="*";
         				}

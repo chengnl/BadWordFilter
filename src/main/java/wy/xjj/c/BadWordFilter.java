@@ -17,7 +17,7 @@ public class BadWordFilter {
         private  BitSet allCheckChar = new BitSet(Character.MAX_VALUE);
         private  int maxLength=0;
         public void  init(){
-        	String[] words=LoadBadWords.loadBadWordsToString();
+        	String[] words=LoadBadWords.loadBadWordsToFile();
         	 for(String word : words){
         		 if(word==null||word.equals(""))
         			 continue;
@@ -40,7 +40,6 @@ public class BadWordFilter {
         		if(!firstCheckChar.get(CharToLower.toLower(text.charAt(index)))){
         			while(index<text.length()-1&&!firstCheckChar.get(CharToLower.toLower(text.charAt(++index))));
         		}
-        		String respaceStr="";
         		for(int j=1,offset=j;j<=Math.min(maxLength, text.length()-index);j++,offset++){
         			while((index+offset-1)<text.length()&&
         					(SkipChars.isSkipChar(CharToLower.toLower(text.charAt(index+offset-1))))){
@@ -53,6 +52,7 @@ public class BadWordFilter {
         			String badWord = text.substring(index, index+offset);
         			badWord=	WordSkipChar.toSkipChar(badWord);
         			if(badWords.contains(badWord)){
+        				String respaceStr="";
         				for(int n=0;n<offset;n++){
         					respaceStr+="*";
         				}
@@ -66,22 +66,22 @@ public class BadWordFilter {
        public  static void main(String[] args){
     	   String  text ="测试屏蔽程序";
     	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
-    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
-    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
-    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
-    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
-    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
-    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
-    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
-    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
-    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
-    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
-    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
-    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
-    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
-    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
-    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
-    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
+//    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
+//    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
+//    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
+//    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
+//    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
+//    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
+//    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
+//    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
+//    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
+//    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
+//    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
+//    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
+//    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
+//    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
+//    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
+//    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
     	  
     	   BadWordFilter  filter = new BadWordFilter();
     	   filter.init();
