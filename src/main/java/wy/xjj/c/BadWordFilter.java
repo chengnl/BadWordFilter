@@ -65,7 +65,7 @@ public class BadWordFilter {
         }
        public  static void main(String[] args){
     	   String  text ="测试屏蔽程序";
-    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
+    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动"; 
 //    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
 //    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
 //    	   text+="fa法ㄨ轮ㄨ功测试放大ti a nan 靠men放大23223432    6 4 运 动";
