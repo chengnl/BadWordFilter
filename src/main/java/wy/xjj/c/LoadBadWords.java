@@ -1,4 +1,10 @@
 package wy.xjj.c;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+
 /**
  *@author chengnl
  *@E-mail:chengnengliang@vrvmail.com.cn
@@ -23,5 +29,32 @@ public class LoadBadWords {
     		return badWordsStr.split("\\|");
     	}
     }
-    //TODO 文件加载
+    public  static String[]  loadBadWordsToFile(){
+    	StringBuilder  sb = new StringBuilder();
+    	InputStream is=null;
+		try{
+		       is=LoadBadWords.class.getResourceAsStream("/badword.txt");
+		       Reader  read = new InputStreamReader(is);
+		       char[]  cbuf = new char[512];
+		       int charRead=0;
+		       while((charRead=read.read(cbuf))!=-1){
+		    	   sb.append(cbuf,0,charRead);
+		       }
+		}catch(Exception e){
+			  e.printStackTrace();
+		}
+		finally{
+			try {
+				if(is!=null)
+					is.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		String badWordsStr =sb.toString();
+		return badWordsStr.split("\\|");
+    }
+    public static void main(String args[]){
+    	LoadBadWords.loadBadWordsToFile();
+    }
 }
