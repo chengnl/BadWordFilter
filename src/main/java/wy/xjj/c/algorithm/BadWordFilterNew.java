@@ -1,4 +1,4 @@
-package wy.xjj.c;
+package wy.xjj.c.algorithm;
 
 import java.util.BitSet;
 import java.util.HashMap;
@@ -20,15 +20,15 @@ public class BadWordFilterNew {
         private  int maxLength=0;
         private  int minLength=Integer.MAX_VALUE;
         public void  init(){
-        	 String[]  words = new String[]{"法轮功","周永康","64事件","tiananmen","靠"};
+        	 String[]  words = new String[]{"法轮功","周永康","64事件","tiananmen的吃","靠","中华人民共和国统一好"};
         	 for(String word : words){
         		 maxLength=Math.max(maxLength, word.length());
         		 minLength=Math.min(minLength, word.length());
         		 for(int i=0;i<7&&i<word.length();i++){
-        			 fastCheckChar[word.charAt(i)]|=(byte)(1<<i);
+        			 fastCheckChar[word.charAt(i)]|=(byte)(1<<i);//记录字符出现的位置最多7位，1111111
         		 }
         		 for(int i=7;i<word.length();i++){
-        			 fastCheckChar[word.charAt(i)]|=0x80;
+        			 fastCheckChar[word.charAt(i)]|=0x80;//7位以上全部判断，根据badWords匹配过滤 10000000
         		 }
         		 if(word.length()==1)
         			 checkChar.set(word.charAt(0));
@@ -66,36 +66,36 @@ public class BadWordFilterNew {
         	return newTextBuilder.toString();
         }
        public  static void main(String[] args){
-    	   String  text ="测试屏蔽程序";
-    	   text+="fa法轮功测试放大tiananmen靠放大23223432    64事件";
-    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
-    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
-    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
-    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
-    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
-    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
-    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
-    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
-    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
-    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
-    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
-    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
-    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
-    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
-    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
-    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
-    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
-    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
-    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
-    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
+    	   String  text ="测试屏蔽程中华人民共和国统一好吃序";
+//    	   text+="fa法轮功测试放大tiananmen靠放大23223432    64事件";
+//    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
+//    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
+//    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
+//    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
+//    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
+//    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
+//    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
+//    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
+//    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
+//    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
+//    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
+//    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
+//    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
+//    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
+//    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
+//    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
+//    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
+//    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
+//    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
+//    	   text+="fa法轮功测试放大ti a nan 靠men放大23223432    64事件";
     	  
     	   BadWordFilterNew  filter = new BadWordFilterNew();
     	   filter.init();
     	   long startTime= System.currentTimeMillis();
-    	   for(int i=0;i<1000;i++){
+    	   //for(int i=0;i<1000;i++){
     		   String newText= filter.filterBadWords(text);
     		   System.out.println(newText);
-    	   }
+    	   //}
     	   long endTime= System.currentTimeMillis();
     	   System.out.println("耗时"+(endTime-startTime)+"ms");
        }
